@@ -1,6 +1,25 @@
 #include <stdio.h>
 #include <string.h>
 
+void deleteLine(char *buffer, int lineNumber){
+    for(int i=0;i<lineNumber;i++){
+        buffer = strchr(buffer, '\n');
+        if (!buffer || *(buffer + 1) == '\0') {
+            printf("Invalid line number!\n");
+            return;
+        }
+        buffer++;
+    }
+
+    char *lineEnd = strchr(buffer, '\n');
+    if (!lineEnd) {
+        buffer[0] = '\0';
+        return;     
+    }
+
+    strcpy(buffer, lineEnd + 1);
+}
+
 void editLine(char *buffer, int lineNumber){
     for(int i=0;i<lineNumber;i++){
         buffer = strchr(buffer, '\n');
@@ -98,8 +117,14 @@ int main(int argc, char** argv){
             addLine(buffer, lineNumber);
             buffer[strlen(buffer)] = '\0';
         }
+        else if(strcmp(command, "d")==0){
+            scanf("%d", &lineNumber);
+            deleteLine(buffer, lineNumber);
+            buffer[strlen(buffer)] = '\0';
+        }
         else{
-            printf("Unknown command! Available commands: print, edit. \n");
+            printf("?\n");
+            // printf("Unknown command! Available commands: p, e, a, d and exit. \n");
         }
     }
     
