@@ -26,7 +26,7 @@ This is a simple line-based text editor implemented in C. It allows users to rea
 ## Compilation
 To compile the program, use the following command:
 ```bash
-gcc -o main main.c
+gcc -o main src/main.c
 ```
 
 This will create an executable file named `line_editor`.
@@ -41,7 +41,7 @@ Run the editor by specifying the name of the text file as an argument:
 
 ### Example:
 ```bash
-./main sample.txt
+./main testFile.txt
 ```
 
 If the specified file does not exist, you will need to create it first.
